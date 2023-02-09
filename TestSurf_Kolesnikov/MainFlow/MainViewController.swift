@@ -16,7 +16,8 @@ class MainViewController: UIViewController {
     
     // MARK: - PrivateProperties
     
-    let courses: [CourseModel] = CourseModel.getCourses()
+    var courses: [CourseModel] = CourseModel.getCourses()
+    var colomnCources: [CourseModel] = CourseModel.getCourses()
     
     // MARK: - UIViewController
 
@@ -90,6 +91,7 @@ private extension MainViewController {
         verticalCollectionView.dataSource = self
         verticalCollectionView.translatesAutoresizingMaskIntoConstraints = false
         verticalCollectionView.contentInset = UIEdgeInsets(top: 0, left: 20, bottom: 0, right: 20)
+        verticalCollectionView.backgroundColor = UIColor(red: 255 / 255, green: 255 / 255, blue: 255 / 255, alpha: 1)
         verticalCollectionView.register(UINib(nibName: "\(MainCollectionViewCell.self)", bundle: .main), forCellWithReuseIdentifier: "\(MainCollectionViewCell.self)")
         view.addSubview(verticalCollectionView)
         
@@ -99,15 +101,16 @@ private extension MainViewController {
         columnLayout.estimatedItemSize = UICollectionViewFlowLayout.automaticSize
         columnLayout.minimumInteritemSpacing = 12
         
+        
         columnCollectionView = UICollectionView(frame: .zero, collectionViewLayout: columnLayout)
         columnCollectionView.showsHorizontalScrollIndicator = false
         columnCollectionView.delegate = self
         columnCollectionView.dataSource = self
         columnCollectionView.translatesAutoresizingMaskIntoConstraints = false
         columnCollectionView.contentInset = UIEdgeInsets(top: 0, left: 0, bottom: 0, right: 20)
+        columnCollectionView.backgroundColor = UIColor(red: 255 / 255, green: 255 / 255, blue: 255 / 255, alpha: 1)
         columnCollectionView.register(UINib(nibName: "\(MainCollectionViewCell.self)", bundle: .main), forCellWithReuseIdentifier: "\(MainCollectionViewCell.self)")
         view.addSubview(columnCollectionView)
-//        columnCollectionView.contentMode = .scaleAspectFit
         
         
         NSLayoutConstraint.activate([
@@ -140,19 +143,18 @@ private extension MainViewController {
             columnCollectionView.topAnchor.constraint(equalTo: secondDiscriptionLabel.bottomAnchor, constant: 12),
             columnCollectionView.leftAnchor.constraint(equalTo: view.leftAnchor, constant: 20),
             columnCollectionView.rightAnchor.constraint(equalTo: view.rightAnchor),
-            columnCollectionView.heightAnchor.constraint(equalToConstant: 100)
+            columnCollectionView.bottomAnchor.constraint(equalTo: infoButton.topAnchor)
         ])
         
         NSLayoutConstraint.activate([
             infoButton.leftAnchor.constraint(equalTo: view.leftAnchor, constant: 20),
             infoButton.bottomAnchor.constraint(equalTo: view.safeAreaLayoutGuide.bottomAnchor),
             infoButton.heightAnchor.constraint(equalToConstant: 60),
-            //            infoButton.rightAnchor.constraint(equalTo: sendButton.leftAnchor, constant: -24)
+            
         ])
         
         NSLayoutConstraint.activate([
             sendButton.rightAnchor.constraint(equalTo: view.rightAnchor, constant: -20),
-            //            sendButton.leftAnchor.constraint(equalTo: infoButton.rightAnchor, constant: 24),
             sendButton.bottomAnchor.constraint(equalTo: view.safeAreaLayoutGuide.bottomAnchor),
             sendButton.heightAnchor.constraint(equalToConstant: 60),
             sendButton.widthAnchor.constraint(equalToConstant: 219)
@@ -191,7 +193,12 @@ extension MainViewController: UIAdaptivePresentationControllerDelegate {
 extension MainViewController: UICollectionViewDataSource, UICollectionViewDelegateFlowLayout {
     
     func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
-        return courses.count
+        switch collectionView {
+        case verticalCollectionView:
+            return courses.count
+        default:
+            return colomnCources.count
+        }
     }
 
     func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
@@ -199,9 +206,25 @@ extension MainViewController: UICollectionViewDataSource, UICollectionViewDelega
         guard let cell = cell as? MainCollectionViewCell else {
             return UICollectionViewCell()
         }
-        cell.textTitle = courses[indexPath.row].course
-        cell.layer.cornerRadius = 12
+        switch collectionView {
+        case verticalCollectionView:
+            cell.textTitle = courses[indexPath.row].course
+            cell.pressed = courses[indexPath.row].pressed
+        default:
+            cell.textTitle = colomnCources[indexPath.row].course
+            cell.pressed = colomnCources[indexPath.row].pressed
+        }
         return cell
+    }
+    
+    func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
+        switch collectionView {
+        case verticalCollectionView:
+            courses[indexPath.row].pressed.toggle()
+        default:
+            colomnCources[indexPath.row].pressed.toggle()
+        }
+        collectionView.reloadData()
     }
     
     func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, sizeForItemAt indexPath: IndexPath) -> CGSize {

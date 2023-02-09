@@ -15,6 +15,7 @@
 		AD51EB5E2992D2640057B2FE /* MainCollectionViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = AD51EB5C2992D2640057B2FE /* MainCollectionViewCell.xib */; };
 		AD51EB622992F4860057B2FE /* CourseModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = AD51EB612992F4860057B2FE /* CourseModel.swift */; };
 		AD568AAB299304170022BE69 /* TryViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = AD568AAA299304170022BE69 /* TryViewController.swift */; };
+		ADC0DC60299537FF0090F351 /* extension + UIColor.swift in Sources */ = {isa = PBXBuildFile; fileRef = ADC0DC5F299537FF0090F351 /* extension + UIColor.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -28,6 +29,7 @@
 		AD51EB5C2992D2640057B2FE /* MainCollectionViewCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = MainCollectionViewCell.xib; sourceTree = "<group>"; };
 		AD51EB612992F4860057B2FE /* CourseModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CourseModel.swift; sourceTree = "<group>"; };
 		AD568AAA299304170022BE69 /* TryViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TryViewController.swift; sourceTree = "<group>"; };
+		ADC0DC5F299537FF0090F351 /* extension + UIColor.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "extension + UIColor.swift"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -63,6 +65,7 @@
 				AD4EE80C29925BE3000BE11C /* MainFlow */,
 				AD4EE80929923B5C000BE11C /* Appearance */,
 				AD4EE7F529923977000BE11C /* AppDelegate.swift */,
+				ADC0DC5F299537FF0090F351 /* extension + UIColor.swift */,
 			);
 			path = TestSurf_Kolesnikov;
 			sourceTree = "<group>";
@@ -176,6 +179,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				ADC0DC60299537FF0090F351 /* extension + UIColor.swift in Sources */,
 				AD4EE7F629923977000BE11C /* AppDelegate.swift in Sources */,
 				AD51EB5D2992D2640057B2FE /* MainCollectionViewCell.swift in Sources */,
 				AD568AAB299304170022BE69 /* TryViewController.swift in Sources */,

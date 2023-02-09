@@ -21,6 +21,18 @@ class MainCollectionViewCell: UICollectionViewCell {
         }
     }
     
+    var pressed = false {
+        didSet {
+            if pressed == false {
+                backgroundColor = UIColor(red: 243, green: 243, blue: 245, alfa: 1)
+                mainLabel.textColor = UIColor(red: 49, green: 49, blue: 49, alfa: 1)
+            } else {
+                backgroundColor = UIColor(red: 49, green: 49, blue: 49, alfa: 1)
+                mainLabel.textColor = UIColor(red: 255, green: 255, blue: 255, alfa: 1)
+            }
+        }
+    }
+    
     // MARK: - UICollectionViewCell
     
     override func awakeFromNib() {
@@ -37,9 +49,8 @@ private extension MainCollectionViewCell {
     func configureAppearance() {
         mainLabel.numberOfLines = 0
         mainLabel.font = .systemFont(ofSize: 14, weight: .medium)
-        mainLabel.textColor = UIColor(red: 49 / 255, green: 49 / 255, blue: 49 / 255, alpha: 1)
         
-        backgroundColor = UIColor(red: 243 / 255, green: 243 / 255, blue: 245 / 255, alpha: 1)
+        layer.cornerRadius = 12
         
         contentView.translatesAutoresizingMaskIntoConstraints = false
         
