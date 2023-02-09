@@ -9,6 +9,43 @@ import UIKit
 
 class MainViewController: UIViewController {
     
+    // MARK: - Constants
+    
+    private enum Constants {
+        
+        static let topConstreintForTitleView: CGFloat = 24
+        static let leftConstreintForViews: CGFloat = 20
+        static let rightConstreintForViews: CGFloat = -20
+        static let topIntervalConstreintForView: CGFloat = 12
+        static let bottomIntervalConstreintForView: CGFloat = -12
+        
+        
+        static let heightVerticalCV: CGFloat = 44
+        
+        static let heightCell: CGFloat = 44
+        static let widthCell: CGFloat = 0
+        
+        static let heightButtom: CGFloat = 60
+        static let widthSendButtom: CGFloat = 219
+        
+        static let fontSizeHeaderLabel: CGFloat = 24
+        static let fontSizeDiscriptionLabel: CGFloat = 14
+        static let fontSizeInfoButtom: CGFloat = 14
+        static let fontSizeSendButtom: CGFloat = 16
+        
+        static let cornerRadiusSendButton: CGFloat = 30
+        
+        static let textHeaderLabel = "Cтажировка в Surf"
+        static let textDiscriptionLabel = "Работай над реальными задачами под руководством опытного наставника и получи возможность стать частью команды мечты."
+        static let textSecondDiscriptionLabel = "Получай стипендию, выстраивай удобный график, работай на современном железе."
+        static let textInfoButtom = "Хочешь к нам?"
+        static let textSendButtom = "Отправить заявку"
+        static let textAlertTitle = "Поздравляем!"
+        static let textAlertMessage = "Ваша заявка успешно отправлена!"
+        static let textAlertCancelButtom = "Закрыть"
+        
+    }
+    
     // MARK: - Views
 
     private var verticalCollectionView: UICollectionView!
@@ -41,42 +78,42 @@ private extension MainViewController {
         view.backgroundColor = UIColor(red: 255 / 255, green: 255 / 255, blue: 255 / 255, alpha: 1)
         
         let headerLabel = UILabel()
-        headerLabel.text = "Cтажировка в Surf"
+        headerLabel.text = Constants.textHeaderLabel
         headerLabel.textColor = UIColor(red: 49 / 255, green: 49 / 255, blue: 49 / 255, alpha: 1)
-        headerLabel.font = .systemFont(ofSize: 24, weight: .medium)
+        headerLabel.font = .systemFont(ofSize: Constants.fontSizeHeaderLabel, weight: .medium)
         headerLabel.numberOfLines = 0
         headerLabel.translatesAutoresizingMaskIntoConstraints = false
         view.addSubview(headerLabel)
         
         let discriptionLabel = UILabel()
-        discriptionLabel.text = "Работай над реальными задачами под руководством опытного наставника и получи возможность стать частью команды мечты."
+        discriptionLabel.text = Constants.textDiscriptionLabel
         discriptionLabel.textColor = UIColor(red: 150 / 255, green: 149 / 255, blue: 155 / 255, alpha: 1)
-        discriptionLabel.font = .systemFont(ofSize: 14)
+        discriptionLabel.font = .systemFont(ofSize: Constants.fontSizeDiscriptionLabel)
         discriptionLabel.numberOfLines = 0
         discriptionLabel.translatesAutoresizingMaskIntoConstraints = false
         view.addSubview(discriptionLabel)
         
         let secondDiscriptionLabel = UILabel()
-        secondDiscriptionLabel.text = "Получай стипендию, выстраивай удобный график, работай на современном железе."
+        secondDiscriptionLabel.text = Constants.textSecondDiscriptionLabel
         secondDiscriptionLabel.textColor = UIColor(red: 150 / 255, green: 149 / 255, blue: 155 / 255, alpha: 1)
-        secondDiscriptionLabel.font = .systemFont(ofSize: 14)
+        secondDiscriptionLabel.font = .systemFont(ofSize: Constants.fontSizeDiscriptionLabel)
         secondDiscriptionLabel.numberOfLines = 0
         secondDiscriptionLabel.translatesAutoresizingMaskIntoConstraints = false
         view.addSubview(secondDiscriptionLabel)
         
         let infoButton = UIButton(type: .system)
-        infoButton.setTitle("Хочешь к нам?", for: .normal)
+        infoButton.setTitle(Constants.textInfoButtom, for: .normal)
         infoButton.setTitleColor(UIColor(red: 150 / 255, green: 149 / 255, blue: 155 / 255, alpha: 1), for: .normal)
-        infoButton.titleLabel?.font = .systemFont(ofSize: 14)
+        infoButton.titleLabel?.font = .systemFont(ofSize: Constants.fontSizeInfoButtom)
         infoButton.translatesAutoresizingMaskIntoConstraints = false
         view.addSubview(infoButton)
         
         let sendButton = UIButton(type: .system)
-        sendButton.setTitle("Отправить заявку", for: .normal)
+        sendButton.setTitle(Constants.textSendButtom, for: .normal)
         sendButton.setTitleColor(UIColor(red: 255 / 255, green: 255 / 255, blue: 255 / 255, alpha: 1), for: .normal)
-        sendButton.titleLabel?.font = .systemFont(ofSize: 16)
+        sendButton.titleLabel?.font = .systemFont(ofSize: Constants.fontSizeSendButtom)
         sendButton.backgroundColor = UIColor(red: 49 / 255, green: 49 / 255, blue: 49 / 255, alpha: 1)
-        sendButton.layer.cornerRadius = 30
+        sendButton.layer.cornerRadius = Constants.cornerRadiusSendButton
         sendButton.translatesAutoresizingMaskIntoConstraints = false
         sendButton.addTarget(self, action: #selector(showAlert), for: .touchUpInside)
         view.addSubview(sendButton)
@@ -97,9 +134,7 @@ private extension MainViewController {
         
         let columnLayout = UICollectionViewFlowLayout()
         columnLayout.scrollDirection = .vertical
-        columnLayout.minimumLineSpacing = 12
         columnLayout.estimatedItemSize = UICollectionViewFlowLayout.automaticSize
-        columnLayout.minimumInteritemSpacing = 12
         
         
         columnCollectionView = UICollectionView(frame: .zero, collectionViewLayout: columnLayout)
@@ -114,62 +149,62 @@ private extension MainViewController {
         
         
         NSLayoutConstraint.activate([
-            headerLabel.topAnchor.constraint(equalTo: view.safeAreaLayoutGuide.topAnchor, constant: 24),
-            headerLabel.leftAnchor.constraint(equalTo: view.leftAnchor, constant: 20),
-            headerLabel.rightAnchor.constraint(equalTo: view.rightAnchor, constant: -20),
+            headerLabel.topAnchor.constraint(equalTo: view.safeAreaLayoutGuide.topAnchor, constant: Constants.topConstreintForTitleView),
+            headerLabel.leftAnchor.constraint(equalTo: view.leftAnchor, constant: Constants.leftConstreintForViews),
+            headerLabel.rightAnchor.constraint(equalTo: view.rightAnchor, constant: Constants.rightConstreintForViews),
         ])
         
         NSLayoutConstraint.activate([
-            discriptionLabel.topAnchor.constraint(equalTo: headerLabel.bottomAnchor, constant: 12),
-            discriptionLabel.leftAnchor.constraint(equalTo: view.leftAnchor, constant: 20),
-            discriptionLabel.rightAnchor.constraint(equalTo: view.rightAnchor, constant: -20),
+            discriptionLabel.topAnchor.constraint(equalTo: headerLabel.bottomAnchor, constant: Constants.topIntervalConstreintForView),
+            discriptionLabel.leftAnchor.constraint(equalTo: view.leftAnchor, constant: Constants.leftConstreintForViews),
+            discriptionLabel.rightAnchor.constraint(equalTo: view.rightAnchor, constant: Constants.rightConstreintForViews),
         ])
         
         NSLayoutConstraint.activate([
-            verticalCollectionView.topAnchor.constraint(equalTo: discriptionLabel.bottomAnchor, constant: 12),
+            verticalCollectionView.topAnchor.constraint(equalTo: discriptionLabel.bottomAnchor, constant: Constants.topIntervalConstreintForView),
             verticalCollectionView.leftAnchor.constraint(equalTo: view.leftAnchor),
             verticalCollectionView.rightAnchor.constraint(equalTo: view.rightAnchor),
-            verticalCollectionView.bottomAnchor.constraint(equalTo: secondDiscriptionLabel.topAnchor, constant: -12),
-            verticalCollectionView.heightAnchor.constraint(equalToConstant: 44)
+            verticalCollectionView.bottomAnchor.constraint(equalTo: secondDiscriptionLabel.topAnchor, constant: Constants.bottomIntervalConstreintForView),
+            verticalCollectionView.heightAnchor.constraint(equalToConstant: Constants.heightVerticalCV)
         ])
         
         NSLayoutConstraint.activate([
-            secondDiscriptionLabel.topAnchor.constraint(equalTo: verticalCollectionView.bottomAnchor, constant: 12),
-            secondDiscriptionLabel.leftAnchor.constraint(equalTo: view.leftAnchor, constant: 20),
-            secondDiscriptionLabel.rightAnchor.constraint(equalTo: view.rightAnchor, constant: -20),
+            secondDiscriptionLabel.topAnchor.constraint(equalTo: verticalCollectionView.bottomAnchor, constant: Constants.topIntervalConstreintForView),
+            secondDiscriptionLabel.leftAnchor.constraint(equalTo: view.leftAnchor, constant: Constants.leftConstreintForViews),
+            secondDiscriptionLabel.rightAnchor.constraint(equalTo: view.rightAnchor, constant: Constants.rightConstreintForViews),
         ])
         
         NSLayoutConstraint.activate([
-            columnCollectionView.topAnchor.constraint(equalTo: secondDiscriptionLabel.bottomAnchor, constant: 12),
-            columnCollectionView.leftAnchor.constraint(equalTo: view.leftAnchor, constant: 20),
+            columnCollectionView.topAnchor.constraint(equalTo: secondDiscriptionLabel.bottomAnchor, constant: Constants.topIntervalConstreintForView),
+            columnCollectionView.leftAnchor.constraint(equalTo: view.leftAnchor, constant: Constants.leftConstreintForViews),
             columnCollectionView.rightAnchor.constraint(equalTo: view.rightAnchor),
             columnCollectionView.bottomAnchor.constraint(equalTo: infoButton.topAnchor)
         ])
         
         NSLayoutConstraint.activate([
-            infoButton.leftAnchor.constraint(equalTo: view.leftAnchor, constant: 20),
+            infoButton.leftAnchor.constraint(equalTo: view.leftAnchor, constant: Constants.leftConstreintForViews),
             infoButton.bottomAnchor.constraint(equalTo: view.safeAreaLayoutGuide.bottomAnchor),
-            infoButton.heightAnchor.constraint(equalToConstant: 60),
+            infoButton.heightAnchor.constraint(equalToConstant: Constants.heightButtom),
             
         ])
         
         NSLayoutConstraint.activate([
-            sendButton.rightAnchor.constraint(equalTo: view.rightAnchor, constant: -20),
+            sendButton.rightAnchor.constraint(equalTo: view.rightAnchor, constant: Constants.rightConstreintForViews),
             sendButton.bottomAnchor.constraint(equalTo: view.safeAreaLayoutGuide.bottomAnchor),
-            sendButton.heightAnchor.constraint(equalToConstant: 60),
-            sendButton.widthAnchor.constraint(equalToConstant: 219)
+            sendButton.heightAnchor.constraint(equalToConstant: Constants.heightButtom),
+            sendButton.widthAnchor.constraint(equalToConstant: Constants.widthSendButtom)
         ])
     }
     
     @objc func showAlert() {
         let alert = UIAlertController(
-            title: "Поздравляем!",
-            message: "Ваша заявка успешно отправлена!",
+            title: Constants.textAlertTitle,
+            message: Constants.textAlertMessage,
             preferredStyle: .alert
         )
         
         let cancel = UIAlertAction(
-            title: "Закрыть",
+            title: Constants.textAlertCancelButtom,
             style: .destructive
         )
         
@@ -229,7 +264,7 @@ extension MainViewController: UICollectionViewDataSource, UICollectionViewDelega
     
     func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, sizeForItemAt indexPath: IndexPath) -> CGSize {
         
-        return CGSize(width: 0, height: 44)
+        return CGSize(width: Constants.widthCell, height: Constants.heightButtom)
     }
 }
 
