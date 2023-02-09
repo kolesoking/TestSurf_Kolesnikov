@@ -33,6 +33,7 @@ private extension MainViewController {
     
     func configureAppearance() {
         inicialize()
+        presentationConfigure()
     }
     
     func inicialize() {
@@ -76,7 +77,7 @@ private extension MainViewController {
         sendButton.backgroundColor = UIColor(red: 49 / 255, green: 49 / 255, blue: 49 / 255, alpha: 1)
         sendButton.layer.cornerRadius = 30
         sendButton.translatesAutoresizingMaskIntoConstraints = false
-        sendButton.addTarget(self, action: #selector(tapSendButton), for: .touchUpInside)
+        sendButton.addTarget(self, action: #selector(showAlert), for: .touchUpInside)
         view.addSubview(sendButton)
         
         let verticalLayout = UICollectionViewFlowLayout()
@@ -88,7 +89,7 @@ private extension MainViewController {
         verticalCollectionView.delegate = self
         verticalCollectionView.dataSource = self
         verticalCollectionView.translatesAutoresizingMaskIntoConstraints = false
-        verticalCollectionView.contentInset = UIEdgeInsets(top: 0, left: 0, bottom: 0, right: 20)
+        verticalCollectionView.contentInset = UIEdgeInsets(top: 0, left: 20, bottom: 0, right: 20)
         verticalCollectionView.register(UINib(nibName: "\(MainCollectionViewCell.self)", bundle: .main), forCellWithReuseIdentifier: "\(MainCollectionViewCell.self)")
         view.addSubview(verticalCollectionView)
         
@@ -123,7 +124,7 @@ private extension MainViewController {
         
         NSLayoutConstraint.activate([
             verticalCollectionView.topAnchor.constraint(equalTo: discriptionLabel.bottomAnchor, constant: 12),
-            verticalCollectionView.leftAnchor.constraint(equalTo: view.leftAnchor, constant: 20),
+            verticalCollectionView.leftAnchor.constraint(equalTo: view.leftAnchor),
             verticalCollectionView.rightAnchor.constraint(equalTo: view.rightAnchor),
             verticalCollectionView.bottomAnchor.constraint(equalTo: secondDiscriptionLabel.topAnchor, constant: -12),
             verticalCollectionView.heightAnchor.constraint(equalToConstant: 44)
@@ -142,31 +143,47 @@ private extension MainViewController {
             columnCollectionView.heightAnchor.constraint(equalToConstant: 100)
         ])
         
-        
         NSLayoutConstraint.activate([
             infoButton.leftAnchor.constraint(equalTo: view.leftAnchor, constant: 20),
             infoButton.bottomAnchor.constraint(equalTo: view.safeAreaLayoutGuide.bottomAnchor),
             infoButton.heightAnchor.constraint(equalToConstant: 60),
-//            infoButton.rightAnchor.constraint(equalTo: sendButton.leftAnchor, constant: -24)
+            //            infoButton.rightAnchor.constraint(equalTo: sendButton.leftAnchor, constant: -24)
         ])
         
         NSLayoutConstraint.activate([
             sendButton.rightAnchor.constraint(equalTo: view.rightAnchor, constant: -20),
-//            sendButton.leftAnchor.constraint(equalTo: infoButton.rightAnchor, constant: 24),
+            //            sendButton.leftAnchor.constraint(equalTo: infoButton.rightAnchor, constant: 24),
             sendButton.bottomAnchor.constraint(equalTo: view.safeAreaLayoutGuide.bottomAnchor),
             sendButton.heightAnchor.constraint(equalToConstant: 60),
             sendButton.widthAnchor.constraint(equalToConstant: 219)
         ])
-        
-        
     }
     
-    @objc func tapSendButton() {
-        // TODO: -
-        print("Presed")
+    @objc func showAlert() {
+        let alert = UIAlertController(
+            title: "Поздравляем!",
+            message: "Ваша заявка успешно отправлена!",
+            preferredStyle: .alert
+        )
+        
+        let cancel = UIAlertAction(
+            title: "Закрыть",
+            style: .destructive
+        )
+        
+        alert.addAction(cancel)
+        
+        present(alert, animated: true)
     }
-    
-    
+}
+
+// MARK: - UIAdaptivePresentationControllerDelegate
+
+extension MainViewController: UIAdaptivePresentationControllerDelegate {
+    func presentationConfigure() {
+        presentationController?.delegate = self
+        isModalInPresentation = true
+    }
 }
 
 // MARK: - UICollectionViewDataSource, UICollectionViewDelegateFlowLayout
@@ -192,3 +209,5 @@ extension MainViewController: UICollectionViewDataSource, UICollectionViewDelega
         return CGSize(width: 0, height: 44)
     }
 }
+
+

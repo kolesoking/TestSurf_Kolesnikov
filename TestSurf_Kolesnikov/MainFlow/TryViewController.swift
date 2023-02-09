@@ -45,18 +45,17 @@ class TryViewController: UIViewController {
             mainImage.heightAnchor.constraint(equalToConstant: 713)
         ])
         
-        presentMVC()
-        
-        view.backgroundColor = .red
+        view.backgroundColor = .white
     }
     
     @objc func presentMVC() {
         let mvc = MainViewController()
         if let sheet = mvc.sheetPresentationController {
-            sheet.detents = [.medium()]
+            sheet.detents = [.medium(), .large()]
             sheet.preferredCornerRadius = 24
         }
-        show(mvc, sender: self)
+
+        present(mvc, animated: true)
         print("gg")
     }
 
