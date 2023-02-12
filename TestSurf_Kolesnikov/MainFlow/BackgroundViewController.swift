@@ -29,7 +29,7 @@ class BackgroundViewController: UIViewController {
     
     // MARK: - Views
     
-    let mainImage: UIImageView = {
+    private let mainImage: UIImageView = {
         let mainImage = UIImageView()
         mainImage.image = UIImage(named: "king")
         mainImage.contentMode = .scaleAspectFit
@@ -45,6 +45,7 @@ class BackgroundViewController: UIViewController {
     }
     
     override func viewDidAppear(_ animated: Bool) {
+        super.viewDidAppear(true)
         presentMVC()
     }
 }

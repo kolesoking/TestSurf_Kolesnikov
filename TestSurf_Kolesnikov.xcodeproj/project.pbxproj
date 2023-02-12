@@ -16,7 +16,6 @@
 		AD51EB622992F4860057B2FE /* CourseModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = AD51EB612992F4860057B2FE /* CourseModel.swift */; };
 		AD568AAB299304170022BE69 /* BackgroundViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = AD568AAA299304170022BE69 /* BackgroundViewController.swift */; };
 		ADC0DC60299537FF0090F351 /* extension + UIColor.swift in Sources */ = {isa = PBXBuildFile; fileRef = ADC0DC5F299537FF0090F351 /* extension + UIColor.swift */; };
-		ADC0DC622997A6AE0090F351 /* InfinityScrollViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = ADC0DC612997A6AE0090F351 /* InfinityScrollViewController.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -31,7 +30,6 @@
 		AD51EB612992F4860057B2FE /* CourseModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CourseModel.swift; sourceTree = "<group>"; };
 		AD568AAA299304170022BE69 /* BackgroundViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BackgroundViewController.swift; sourceTree = "<group>"; };
 		ADC0DC5F299537FF0090F351 /* extension + UIColor.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "extension + UIColor.swift"; sourceTree = "<group>"; };
-		ADC0DC612997A6AE0090F351 /* InfinityScrollViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = InfinityScrollViewController.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -68,7 +66,6 @@
 				AD4EE80929923B5C000BE11C /* Appearance */,
 				AD4EE7F529923977000BE11C /* AppDelegate.swift */,
 				ADC0DC5F299537FF0090F351 /* extension + UIColor.swift */,
-				ADC0DC612997A6AE0090F351 /* InfinityScrollViewController.swift */,
 			);
 			path = TestSurf_Kolesnikov;
 			sourceTree = "<group>";
@@ -185,7 +182,6 @@
 				ADC0DC60299537FF0090F351 /* extension + UIColor.swift in Sources */,
 				AD4EE7F629923977000BE11C /* AppDelegate.swift in Sources */,
 				AD51EB5D2992D2640057B2FE /* MainCollectionViewCell.swift in Sources */,
-				ADC0DC622997A6AE0090F351 /* InfinityScrollViewController.swift in Sources */,
 				AD568AAB299304170022BE69 /* BackgroundViewController.swift in Sources */,
 				AD51EB622992F4860057B2FE /* CourseModel.swift in Sources */,
 				AD4EE80B29923C05000BE11C /* MainViewController.swift in Sources */,

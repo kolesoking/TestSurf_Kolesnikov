@@ -72,10 +72,12 @@ class MainViewController: UIViewController {
     private var verticalCollectionView: UICollectionView!
     private var columnCollectionView: UICollectionView!
     
+    
+    
     // MARK: - PrivateProperties
     
-    var courses: [CourseModel] = CourseModel.getCourses()
-    var colomnCources: [CourseModel] = CourseModel.getCourses()
+    private var courses: [CourseModel] = CourseModel.getCourses()
+    private var colomnCources: [CourseModel] = CourseModel.getCourses()
     
     // MARK: - UIViewController
 
@@ -91,11 +93,11 @@ class MainViewController: UIViewController {
 private extension MainViewController {
     
     func configureAppearance() {
-        inicialize()
+        setUp()
         presentationConfigure()
     }
     
-    func inicialize() {
+    func setUp() {
         view.backgroundColor = Constants.viewBackgroundColor
         
         let headerLabel = UILabel()
@@ -160,9 +162,6 @@ private extension MainViewController {
         let columnLayout = UICollectionViewFlowLayout()
         columnLayout.scrollDirection = .vertical
         columnLayout.estimatedItemSize = UICollectionViewFlowLayout.automaticSize
-        columnLayout.minimumLineSpacing = 2
-        columnLayout.minimumInteritemSpacing = 2
-        
         
         columnCollectionView = UICollectionView(frame: .zero, collectionViewLayout: columnLayout)
         columnCollectionView.showsHorizontalScrollIndicator = false
@@ -263,6 +262,7 @@ extension MainViewController: UICollectionViewDataSource, UICollectionViewDelega
         case verticalCollectionView:
             return courses.count
         default:
+            
             return colomnCources.count
             
         }
@@ -301,7 +301,7 @@ extension MainViewController: UICollectionViewDataSource, UICollectionViewDelega
     
     func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, sizeForItemAt indexPath: IndexPath) -> CGSize {
         
-        return CGSize(width: Constants.widthCell, height: Constants.heightButtom)
+        return CGSize(width: Constants.widthCell, height: Constants.heightCell)
     }
 }
 
