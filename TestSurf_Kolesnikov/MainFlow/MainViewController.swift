@@ -21,6 +21,16 @@ class MainViewController: UIViewController {
         
         
         static let heightVerticalCV: CGFloat = 44
+
+        static let topContentInsetVerticalCV: CGFloat = 0
+        static let leftContentInsetVerticalCV: CGFloat = 20
+        static let bottomContentInsetVerticalCV: CGFloat = 0
+        static let rightContentInsetVerticalCV: CGFloat = 20
+        
+        static let topContentInsetColumnCV: CGFloat = 0
+        static let leftContentInsetColumnCV: CGFloat = 0
+        static let bottomContentInsetColumnCV: CGFloat = 0
+        static let rightContentInsetColumnCV: CGFloat = 20
         
         static let heightCell: CGFloat = 44
         static let widthCell: CGFloat = 0
@@ -34,6 +44,17 @@ class MainViewController: UIViewController {
         static let fontSizeSendButtom: CGFloat = 16
         
         static let cornerRadiusSendButton: CGFloat = 30
+        
+        static let viewBackgroundColor = UIColor(red: 255, green: 255, blue: 255, alfa: 1)
+        static let headerLabelTextColor = UIColor(red: 49, green: 49, blue: 49, alfa: 1)
+        static let discriptionLabelTextColor = UIColor(red: 150, green: 149, blue: 155, alfa: 1)
+        static let secondDiscriptionLabelTextColor = UIColor(red: 150, green: 149, blue: 155, alfa: 1)
+        static let infoButtonTitleColor = UIColor(red: 150, green: 149, blue: 155, alfa: 1)
+        static let sendButtonTitleColor = UIColor(red: 255, green: 255, blue: 255, alfa: 1)
+        static let sendButtonBackgroundColor = UIColor(red: 49, green: 49, blue: 49, alfa: 1)
+        static let verticalCVBackgroundColor = UIColor(red: 255, green: 255, blue: 255, alfa: 1)
+        static let columnCVBackgroundColor = UIColor(red: 255, green: 255, blue: 255, alfa: 1)
+        
         
         static let textHeaderLabel = "Cтажировка в Surf"
         static let textDiscriptionLabel = "Работай над реальными задачами под руководством опытного наставника и получи возможность стать частью команды мечты."
@@ -75,11 +96,11 @@ private extension MainViewController {
     }
     
     func inicialize() {
-        view.backgroundColor = UIColor(red: 255 / 255, green: 255 / 255, blue: 255 / 255, alpha: 1)
+        view.backgroundColor = Constants.viewBackgroundColor
         
         let headerLabel = UILabel()
         headerLabel.text = Constants.textHeaderLabel
-        headerLabel.textColor = UIColor(red: 49 / 255, green: 49 / 255, blue: 49 / 255, alpha: 1)
+        headerLabel.textColor = Constants.headerLabelTextColor
         headerLabel.font = .systemFont(ofSize: Constants.fontSizeHeaderLabel, weight: .medium)
         headerLabel.numberOfLines = 0
         headerLabel.translatesAutoresizingMaskIntoConstraints = false
@@ -87,7 +108,7 @@ private extension MainViewController {
         
         let discriptionLabel = UILabel()
         discriptionLabel.text = Constants.textDiscriptionLabel
-        discriptionLabel.textColor = UIColor(red: 150 / 255, green: 149 / 255, blue: 155 / 255, alpha: 1)
+        discriptionLabel.textColor = Constants.discriptionLabelTextColor
         discriptionLabel.font = .systemFont(ofSize: Constants.fontSizeDiscriptionLabel)
         discriptionLabel.numberOfLines = 0
         discriptionLabel.translatesAutoresizingMaskIntoConstraints = false
@@ -95,7 +116,7 @@ private extension MainViewController {
         
         let secondDiscriptionLabel = UILabel()
         secondDiscriptionLabel.text = Constants.textSecondDiscriptionLabel
-        secondDiscriptionLabel.textColor = UIColor(red: 150 / 255, green: 149 / 255, blue: 155 / 255, alpha: 1)
+        secondDiscriptionLabel.textColor = Constants.secondDiscriptionLabelTextColor
         secondDiscriptionLabel.font = .systemFont(ofSize: Constants.fontSizeDiscriptionLabel)
         secondDiscriptionLabel.numberOfLines = 0
         secondDiscriptionLabel.translatesAutoresizingMaskIntoConstraints = false
@@ -103,16 +124,16 @@ private extension MainViewController {
         
         let infoButton = UIButton(type: .system)
         infoButton.setTitle(Constants.textInfoButtom, for: .normal)
-        infoButton.setTitleColor(UIColor(red: 150 / 255, green: 149 / 255, blue: 155 / 255, alpha: 1), for: .normal)
+        infoButton.setTitleColor(Constants.infoButtonTitleColor, for: .normal)
         infoButton.titleLabel?.font = .systemFont(ofSize: Constants.fontSizeInfoButtom)
         infoButton.translatesAutoresizingMaskIntoConstraints = false
         view.addSubview(infoButton)
         
         let sendButton = UIButton(type: .system)
         sendButton.setTitle(Constants.textSendButtom, for: .normal)
-        sendButton.setTitleColor(UIColor(red: 255 / 255, green: 255 / 255, blue: 255 / 255, alpha: 1), for: .normal)
+        sendButton.setTitleColor(Constants.sendButtonTitleColor, for: .normal)
         sendButton.titleLabel?.font = .systemFont(ofSize: Constants.fontSizeSendButtom)
-        sendButton.backgroundColor = UIColor(red: 49 / 255, green: 49 / 255, blue: 49 / 255, alpha: 1)
+        sendButton.backgroundColor = Constants.sendButtonBackgroundColor
         sendButton.layer.cornerRadius = Constants.cornerRadiusSendButton
         sendButton.translatesAutoresizingMaskIntoConstraints = false
         sendButton.addTarget(self, action: #selector(showAlert), for: .touchUpInside)
@@ -127,14 +148,20 @@ private extension MainViewController {
         verticalCollectionView.delegate = self
         verticalCollectionView.dataSource = self
         verticalCollectionView.translatesAutoresizingMaskIntoConstraints = false
-        verticalCollectionView.contentInset = UIEdgeInsets(top: 0, left: 20, bottom: 0, right: 20)
-        verticalCollectionView.backgroundColor = UIColor(red: 255 / 255, green: 255 / 255, blue: 255 / 255, alpha: 1)
+        verticalCollectionView.contentInset = UIEdgeInsets(
+            top: Constants.topContentInsetVerticalCV,
+            left: Constants.leftContentInsetVerticalCV,
+            bottom: Constants.bottomContentInsetVerticalCV,
+            right: Constants.rightContentInsetVerticalCV)
+        verticalCollectionView.backgroundColor = Constants.verticalCVBackgroundColor
         verticalCollectionView.register(UINib(nibName: "\(MainCollectionViewCell.self)", bundle: .main), forCellWithReuseIdentifier: "\(MainCollectionViewCell.self)")
         view.addSubview(verticalCollectionView)
         
         let columnLayout = UICollectionViewFlowLayout()
         columnLayout.scrollDirection = .vertical
         columnLayout.estimatedItemSize = UICollectionViewFlowLayout.automaticSize
+        columnLayout.minimumLineSpacing = 2
+        columnLayout.minimumInteritemSpacing = 2
         
         
         columnCollectionView = UICollectionView(frame: .zero, collectionViewLayout: columnLayout)
@@ -142,8 +169,12 @@ private extension MainViewController {
         columnCollectionView.delegate = self
         columnCollectionView.dataSource = self
         columnCollectionView.translatesAutoresizingMaskIntoConstraints = false
-        columnCollectionView.contentInset = UIEdgeInsets(top: 0, left: 0, bottom: 0, right: 20)
-        columnCollectionView.backgroundColor = UIColor(red: 255 / 255, green: 255 / 255, blue: 255 / 255, alpha: 1)
+        columnCollectionView.contentInset = UIEdgeInsets(
+            top: Constants.topContentInsetColumnCV,
+            left: Constants.leftContentInsetColumnCV,
+            bottom: Constants.bottomContentInsetColumnCV,
+            right: Constants.rightContentInsetColumnCV)
+        columnCollectionView.backgroundColor = Constants.columnCVBackgroundColor
         columnCollectionView.register(UINib(nibName: "\(MainCollectionViewCell.self)", bundle: .main), forCellWithReuseIdentifier: "\(MainCollectionViewCell.self)")
         view.addSubview(columnCollectionView)
         
@@ -178,7 +209,7 @@ private extension MainViewController {
             columnCollectionView.topAnchor.constraint(equalTo: secondDiscriptionLabel.bottomAnchor, constant: Constants.topIntervalConstreintForView),
             columnCollectionView.leftAnchor.constraint(equalTo: view.leftAnchor, constant: Constants.leftConstreintForViews),
             columnCollectionView.rightAnchor.constraint(equalTo: view.rightAnchor),
-            columnCollectionView.bottomAnchor.constraint(equalTo: infoButton.topAnchor)
+            columnCollectionView.heightAnchor.constraint(equalToConstant: 100)
         ])
         
         NSLayoutConstraint.activate([
@@ -233,6 +264,7 @@ extension MainViewController: UICollectionViewDataSource, UICollectionViewDelega
             return courses.count
         default:
             return colomnCources.count
+            
         }
     }
 
@@ -256,6 +288,11 @@ extension MainViewController: UICollectionViewDataSource, UICollectionViewDelega
         switch collectionView {
         case verticalCollectionView:
             courses[indexPath.row].pressed.toggle()
+            if courses[indexPath.row].pressed {
+                courses.insert(courses[indexPath.row], at: 0)
+                courses.remove(at: indexPath.row + 1)
+                collectionView.scrollToItem(at: indexPath, at: .right, animated: true)
+            }
         default:
             colomnCources[indexPath.row].pressed.toggle()
         }
