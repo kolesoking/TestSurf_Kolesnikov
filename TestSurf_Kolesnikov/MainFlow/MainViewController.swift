@@ -291,7 +291,7 @@ extension MainViewController: UICollectionViewDataSource, UICollectionViewDelega
             if courses[indexPath.row].pressed {
                 courses.insert(courses[indexPath.row], at: 0)
                 courses.remove(at: indexPath.row + 1)
-                collectionView.scrollToItem(at: indexPath, at: .right, animated: true)
+                collectionView.scrollToItem(at: IndexPath(row: 0, section: 0), at: .left, animated: true)
             }
         default:
             colomnCources[indexPath.row].pressed.toggle()
